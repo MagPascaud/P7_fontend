@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Footer from './components/Footer/Footer';
+import Header from './components/Header/Header';
 import './index.css';
 import Home from './pages/Home/Home';
-// import Footer from './components/Footer/footer';
-// import Header from './components/Header';
 import reportWebVitals from './reportWebVitals';
+import GlobalStyle from './utils/style/GlobalStyle';
+// import PostStyle from './utils/style/PostStyle';
 
 // const root = ReactDOM.createRoot(document.getElementById('root'));
 // root.render(
@@ -17,11 +19,14 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-      <Router>
-        <Routes>
-         <Route path='/' element={<Home />} />
-        </Routes>   
-        </Router>
+    <Router>
+      <GlobalStyle />
+      <Header />
+      <Routes>
+        <Route path='/' element={<Home />} />
+      </Routes>
+      <Footer />
+    </Router>
   </React.StrictMode>
 )
 // If you want to start measuring performance in your app, pass a function
