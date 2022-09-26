@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import './Home.css';
 import Post from '../../components/Post/Post';
 
 function Home() {
@@ -7,7 +6,7 @@ function Home() {
   useEffect(() => {
     fetch('http://localhost:3000/api/posts/', {
       headers: {
-        Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmU3YjUwZjJhNGFiYjlhZDE2ZDQ4MDEiLCJpYXQiOjE2NjM1Njk0MjUsImV4cCI6MTY2MzY1NTgyNX0.rlwlRNGfdzuT3DzQsyX4RVf5dNjV6X0K5LDdkLEsASc"
+        Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmU3YjUwZjJhNGFiYjlhZDE2ZDQ4MDEiLCJpYXQiOjE2NjQxNzMwNjMsImV4cCI6MTY2NDI1OTQ2M30.1jRU1zfXCQHKv_6zjvumG0DtLP4Mg7FGe_2gvdXAFlk"
       }
     })
       .then(res => res.json())
@@ -25,6 +24,8 @@ function Home() {
             likes={post.likes}
             userLiked={post.userLiked}
             key={post._id}
+            imageUrl={post.imageUrl}
+            createdDate={post.createdDate}
           ></Post>
         )
       }

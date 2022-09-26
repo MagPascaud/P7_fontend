@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
+// import Post from './components/Post/Post';
 import './index.css';
 import Home from './pages/Home/Home';
 import reportWebVitals from './reportWebVitals';
 import GlobalStyle from './utils/style/GlobalStyle';
+import PostForm from './pages/Form';
 // import PostStyle from './utils/style/PostStyle';
+
 
 // const root = ReactDOM.createRoot(document.getElementById('root'));
 // root.render(
@@ -24,6 +27,10 @@ root.render(
       <Header />
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/post' element={<PostForm />} />
+        <Route path='/user' element={<Home />} />
+
+
       </Routes>
       <Footer />
     </Router>

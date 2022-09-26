@@ -1,23 +1,22 @@
 import styled from "styled-components";
-import colors from '../style/colors';
+import colors from './colors';
 
 
-const Title = styled.h3`
-font-weight: bold;
-`
-const BackgroundPost = styled.main`
+
+const BackgroundPost = styled.div`
 background-color: ${colors.backgroundPost};
-border: solid 10px ${colors.primary};
+border-radius: 10px 5px #000000;
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+align-items: center;
+
 `
-
-
 
 function PostStyle() {
     return (
-        <main>
-            <Title />
-            <BackgroundPost />
-        </main>
+        <BackgroundPost />
+
     )
 }
 
