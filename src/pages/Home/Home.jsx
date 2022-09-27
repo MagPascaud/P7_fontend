@@ -6,7 +6,7 @@ function Home() {
   useEffect(() => {
     fetch('http://localhost:3000/api/posts/', {
       headers: {
-        Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmU3YjUwZjJhNGFiYjlhZDE2ZDQ4MDEiLCJpYXQiOjE2NjQxNzMwNjMsImV4cCI6MTY2NDI1OTQ2M30.1jRU1zfXCQHKv_6zjvumG0DtLP4Mg7FGe_2gvdXAFlk"
+        Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmU3YjUwZjJhNGFiYjlhZDE2ZDQ4MDEiLCJpYXQiOjE2NjQyNzI3NTIsImV4cCI6MTY2NDM1OTE1Mn0.gukI4pQAig4sSkLiQ-lKpDe7adyAmzpAGRsMOcHFGYE"
       }
     })
       .then(res => res.json())
