@@ -1,5 +1,6 @@
 import React from 'react';
 import './Post.css';
+import '../../assets/heartIcon.png'
 // import PostStyle from '../../utils/style/PostStyle';
 
 
@@ -8,16 +9,18 @@ function Post({ _id, postText, postTitle, likes, userLiked, user, imageUrl, crea
   console.log(_id, postText, postTitle, likes, userLiked, user);
   return (
     <article className='post'>
-      <header>
+      <header className='user'>
         <img src={`${user.userImageUrl}`} alt="" className="avatar" />
-        <span>Rachid Said</span>
+        <span>{`${user.userName}`}</span>
       </header>
-      <img src={`${user.userName}`} alt="" className="main-content" />
+      <img src={`${imageUrl}`} alt="" className="main-content" />
       <p className="desc">{`${postText}`}</p>
       <footer>
         <div className="likes">
           <button>
-            <i>coeur</i>
+
+            <i class="fa-solid fa-heart"></i>
+
           </button>
           <span className="nb-likes">
             {/* {nbLikes} */}

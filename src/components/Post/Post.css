@@ -1,8 +1,36 @@
 .post {
     background-color: #ffffff;
-    border-radius: 10px 5px #000000;
+    border-radius: 10px 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: stretch;
+    margin-bottom: 40px;
+}
+
+.user {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
     align-items: center;
+    padding: 20px;
+}
+
+.avatar {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+
+}
+
+.main-content {
+    max-width: 640px;
+}
+
+.desc {
+    padding: 20px;
+}
+
+.heart i {
+    background-color: black;
 }
