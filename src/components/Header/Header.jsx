@@ -20,10 +20,12 @@ display: flex;
 flex-direction: row;
 justify-content: space-between;
 background-color: ${colors.background};
-text-decoration: underline;
+text-decoration: none;
 font-size: 20px;
 margin-bottom: 100px;
 `
+
+
 
 function Header() {
     return (

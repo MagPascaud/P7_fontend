@@ -1,6 +1,9 @@
 import React from 'react';
 import './Post.css';
-import '../../assets/heartIcon.png'
+// import heart from '../../assets/heart-solid.svg';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+
 // import PostStyle from '../../utils/style/PostStyle';
 
 
@@ -13,21 +16,19 @@ function Post({ _id, postText, postTitle, likes, userLiked, user, imageUrl, crea
         <img src={`${user.userImageUrl}`} alt="" className="avatar" />
         <span>{`${user.userName}`}</span>
       </header>
-      <img src={`${imageUrl}`} alt="" className="main-content" />
+      <img src={`${imageUrl}`} alt={`${imageUrl}`} className="main-content" />
       <p className="desc">{`${postText}`}</p>
-      <footer>
+      <footer className='reacts'>
         <div className="likes">
-          <button>
-
-            <i class="fa-solid fa-heart"></i>
-
+          <button>🤍
+            {/* <FontAwesomeIcon icon="fa-solid fa-heart" /> */}
           </button>
           <span className="nb-likes">
             {/* {nbLikes} */}
           </span>
         </div>
         <div className="comments">
-          {/* <span className="nb-comments">{nbComments} commentaires</span> */}
+          <span className="nb-comments"> 5 commentaires</span>
         </div>
       </footer>
 
