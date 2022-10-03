@@ -1,11 +1,9 @@
 import React from 'react';
 import './Post.css';
+// import PostComment from '../PostComment/PostComment';
 // import heart from '../../assets/heart-solid.svg';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
-
-// import PostStyle from '../../utils/style/PostStyle';
-
 
 
 function Post({ _id, postText, postTitle, likes, userLiked, user, imageUrl, createdDate, updatedDate, userImageUrl }) {
@@ -21,17 +19,18 @@ function Post({ _id, postText, postTitle, likes, userLiked, user, imageUrl, crea
       <footer className='reacts'>
         <div className="likes">
           <button>🤍
-            {/* <FontAwesomeIcon icon="fa-solid fa-heart" /> */}
+            <i>
+              {/* <FontAwesomeIcon icon="fa-solid fa-heart" /> */}
+            </i>
           </button>
           <span className="nb-likes">
             {/* {nbLikes} */}
           </span>
         </div>
         <div className="comments">
-          <span className="nb-comments"> 5 commentaires</span>
+          <span className="nb-comments"> commentaires</span>
         </div>
       </footer>
-
 
       {/* <h3>{`${postTitle}`}</h3>
         <p>{`${_id}`}</p>
@@ -42,7 +41,7 @@ function Post({ _id, postText, postTitle, likes, userLiked, user, imageUrl, crea
         <p>{`${postText}`}</p>
         <p>{`${likes}`}🤍</p>
         <p>{`${userLiked}`}</p> */}
-    </article>
+    </article >
   )
 }
 

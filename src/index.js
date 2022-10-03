@@ -3,21 +3,15 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
-// import Post from './components/Post/Post';
-import './index.css';
-import Home from './pages/Home/Home';
+import HomePage from './pages/Home/HomePage';
 import reportWebVitals from './reportWebVitals';
 import GlobalStyle from './utils/style/GlobalStyle';
-import PostForm from './pages/Form';
-// import PostStyle from './utils/style/PostStyle';
+import FormPage from './pages/Form/FormPage';
+import PostPage from './pages/Post/PostPage';
+import AuthForm from './components/AuthForm/AuthForm';
 
 
-// const root = ReactDOM.createRoot(document.getElementById('root'));
-// root.render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>
-// );
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -26,11 +20,12 @@ root.render(
       <GlobalStyle />
       <Header />
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/post' element={<PostForm />} />
-        <Route path='/user' element={<Home />} />
-
-
+        <Route path='/' element={<HomePage />} />
+        <Route path='/post' element={<FormPage />} />
+        <Route path='/user' />
+        <Route path='/:id' element={<PostPage />} />
+        <Route path='/login' element={<AuthForm />} />
+        <Route path='/signup' element={<AuthForm />} />
       </Routes>
       <Footer />
     </Router>

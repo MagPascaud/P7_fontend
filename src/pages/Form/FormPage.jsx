@@ -1,4 +1,4 @@
-import PostForm from '../components/Form/Form';
+import PostForm from '../../components/Form/Form';
 // import { Link } from 'react-router-dom';
 
 
