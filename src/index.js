@@ -8,8 +8,8 @@ import reportWebVitals from './reportWebVitals';
 import GlobalStyle from './utils/style/GlobalStyle';
 import FormPage from './pages/Form/FormPage';
 import PostPage from './pages/Post/PostPage';
-import AuthForm from './components/AuthForm/AuthForm';
-
+import LoginPage from './pages/Auth/LoginPage';
+import SignupPage from './pages/Auth/SignupPage';
 
 
 
@@ -24,8 +24,8 @@ root.render(
         <Route path='/post' element={<FormPage />} />
         <Route path='/user' />
         <Route path='/:id' element={<PostPage />} />
-        <Route path='/login' element={<AuthForm />} />
-        <Route path='/signup' element={<AuthForm />} />
+        <Route path='/login' element={<LoginPage />} />
+        <Route path='/signup' element={<SignupPage />} />
       </Routes>
       <Footer />
     </Router>
