@@ -11,7 +11,7 @@ function PostPage() {
     useEffect(() => {
         fetch('http://localhost:3000/api/posts/' + id, {
             headers: {
-                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmU3YjUwZjJhNGFiYjlhZDE2ZDQ4MDEiLCJpYXQiOjE2NjUzOTE0NDUsImV4cCI6MTY2NTQ3Nzg0NX0.GuupShgkmqbo-XNN2eL3J_mnLMpSjrPsaxvfgez_KS0"
+                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmU3YjUwZjJhNGFiYjlhZDE2ZDQ4MDEiLCJpYXQiOjE2NjU0ODA2MjMsImV4cCI6MTY2NTU2NzAyM30.JzrkxGeCp1M9d-H0-5_h5lKEp2P_h4Mx1-vauPiO1Jg"
             }
         })
             .then(res => res.json())

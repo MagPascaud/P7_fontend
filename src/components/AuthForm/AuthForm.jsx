@@ -5,7 +5,7 @@ import { useState } from 'react';
 function AuthForm(props) {
     const isSignUp = props.isSignUp;
 
-    const [email, setEmail] = useState({});
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [userName, setUserName] = useState("");
 
@@ -22,7 +22,7 @@ function AuthForm(props) {
                     isSignUp ?
                         <>
                             <label for="userName">Votre nom d'utilisateur :</label>
-                            <input type="text" name="userName" id="userName" required autoFocus value={userName} onChange={(e) => setUserName(e.target.value)}></input>
+                            <input type="text" name="userName" id="userName" required value={userName} onChange={(e) => setUserName(e.target.value)}></input>
                         </> :
                         <></>
                 }
