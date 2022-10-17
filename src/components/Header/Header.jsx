@@ -21,7 +21,7 @@ flex-direction: row;
 justify-content: space-between;
 background-color: ${colors.background};
 text-decoration: none;
-font-size: 20px;
+font-size: 16px;
 margin-bottom: 100px;
 `
 
@@ -35,7 +35,7 @@ function Header() {
                 <HeaderStyle>
                     <Link to="/">Accueil</Link>
                     <Link to="/post">Créer un post</Link>
-                    <Link to="/user">Mon compte</Link>
+                    <Link to="/userName">Mon compte</Link>
                     <Link to="/user">Me déconnecter</Link>
                 </HeaderStyle>
 

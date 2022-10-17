@@ -10,6 +10,8 @@ import FormPage from './pages/Form/FormPage';
 import PostPage from './pages/Post/PostPage';
 import LoginPage from './pages/Auth/LoginPage';
 import SignupPage from './pages/Auth/SignupPage';
+import UserPage from './pages/User/UserPage';
+import "./utils/style/mediaqueries.css";
 
 
 
@@ -22,7 +24,7 @@ root.render(
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/post' element={<FormPage />} />
-        <Route path='/user' />
+        <Route path='/userName' element={<UserPage />} />
         <Route path='/:id' element={<PostPage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/signup' element={<SignupPage />} />

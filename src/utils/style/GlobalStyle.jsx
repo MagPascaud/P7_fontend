@@ -10,11 +10,5 @@ body {
 }
 
 `
-// padding: 20px;
-// display: flex;
-// flex-direction: column;
-// justify-content: space-around;
-// align-items: center;
-// background-color: ${colors.background};
-// color: ${colors.tertiary};
+
 export default GlobalStyle

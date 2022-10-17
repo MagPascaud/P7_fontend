@@ -1,0 +1,11 @@
+@media screen and (max-width: 480px) {
+    body {
+        max-width: 90%;
+    }
+
+    .main-content {
+        width: 100%;
+    }
+
+
+}

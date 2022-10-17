@@ -6,7 +6,7 @@ import './Post.css';
 // import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 
-function Post({ _id, postText, postTitle, likes, userLiked, user, imageUrl, createdDate, updatedDate, userImageUrl }) {
+function Post({ _id, postText, postTitle, likes, userLiked, user, imageUrl, createdDate, updatedDate }) {
   console.log(_id, postText, postTitle, likes, userLiked, user);
   return (
     <article className='post'>
