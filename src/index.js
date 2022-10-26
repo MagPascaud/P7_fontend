@@ -1,8 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Footer from './components/Footer/Footer';
-import Header from './components/Header/Header';
 import HomePage from './pages/Home/HomePage';
 import reportWebVitals from './reportWebVitals';
 import GlobalStyle from './utils/style/GlobalStyle';
@@ -20,16 +18,14 @@ root.render(
   <React.StrictMode>
     <Router>
       <GlobalStyle />
-      <Header />
       <Routes>
         <Route path='/' element={<HomePage />} />
-        <Route path='/post' element={<FormPage />} />
-        <Route path='/userName' element={<UserPage />} />
-        <Route path='/:id' element={<PostPage />} />
+        <Route path='/form/:id' element={<FormPage />} />
+        <Route path='/user/:id' element={<UserPage />} />
+        <Route path='/post/:id' element={<PostPage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/signup' element={<SignupPage />} />
       </Routes>
-      <Footer />
     </Router>
   </React.StrictMode>
 )

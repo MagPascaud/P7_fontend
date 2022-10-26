@@ -1,47 +1,73 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
+import { Link, Navigate } from 'react-router-dom';
 import './Post.css';
-// import PostComment from '../PostComment/PostComment';
-// import heart from '../../assets/heart-solid.svg';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+
+function Post({ _id, postText, postTitle, likes, user, imageUrl, createdDate, updatedDate }) {
+  const token = localStorage.getItem('token');
+  const [updatePost, setUpdatePost] = useState(false);
+  const [deletePost, setSetDeletePost] = useState(false);
+  const [resOK, setResOK] = useState(false);
+
+  const onDeletePost = () => {
+    const confirmDelete = window.confirm("Êtes-vous sûr de vouloir supprimer la publication ?");
+    if (confirmDelete) {
+      setSetDeletePost(true);
+    }
+  }
+  const onUpdate = () => {
+    setUpdatePost(true);
+  }
 
 
-function Post({ _id, postText, postTitle, likes, userLiked, user, imageUrl, createdDate, updatedDate }) {
-  console.log(_id, postText, postTitle, likes, userLiked, user);
+  useEffect(() => {
+    if (!deletePost) return
+
+    fetch('http://localhost:3000/api/posts/' + _id, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+      .then(res => res.json())
+      .then(value => {
+        setResOK(true)
+      })
+      .catch(e => {
+        setSetDeletePost(false)
+      })
+  })
+
   return (
-    <article className='post'>
-      <header className='user'>
-        <img src={`${user.userImageUrl}`} alt="" className="avatar" />
-        <span>{`${user.userName}`}</span>
-      </header>
-      <img src={`${imageUrl}`} alt={`${imageUrl}`} className="main-content" />
-      <p className="desc">{`${postText}`}</p>
-      <footer className='reacts'>
-        <div className="likes">
-          <button>🤍
-            <i>
-              {/* <FontAwesomeIcon icon="fa-solid fa-heart" /> */}
-            </i>
-          </button>
-          <span className="nb-likes">
-            {/* {nbLikes} */}
-          </span>
-        </div>
-        <div className="comments">
-          <span className="nb-comments"> commentaires</span>
-        </div>
-      </footer>
+    !updatePost && !resOK ?
+      <article className='post'>
+        <header className='user'>
+          <Link className='a' to={'/user/' + user._id}>
+            <img src={`${user.userImageUrl}`} alt="" className="avatar" />
+            <span>{`${user.userName}`}, {updatedDate ? 'mis à jour le ' + updatedDate : 'créé le ' + createdDate}</span>
+          </Link>
+          <div className='butttons'>
+            <button onClick={onUpdate}>Editer</button>
+            <button onClick={onDeletePost}>Supprimer</button>
+          </div>
+        </header>
 
-      {/* <h3>{`${postTitle}`}</h3>
-        <p>{`${_id}`}</p>
-        <p>{`${user.userName}`}</p>
-        <img src={`${user.userImageUrl}`} alt="" />
-        <p>{`${createdDate}`}</p>
-        <img src={`${imageUrl}`} alt="" />
-        <p>{`${postText}`}</p>
-        <p>{`${likes}`}🤍</p>
-        <p>{`${userLiked}`}</p> */}
-    </article >
+        <Link className='a' to={'/post/' + _id}>
+          <h3>{postTitle}</h3>
+          <img src={`${imageUrl}`} alt={`${imageUrl}`} className="main-content" />
+          <p className="desc">{`${postText}`}</p>
+          <footer className='reacts'>
+            <button className="likes">
+              <span>{likes} 🤍</span>
+            </button>
+            <div className="comments">
+              <span className="nb-comments"> commentaires</span>
+            </div>
+          </footer>
+        </Link>
+      </article>
+      :
+      updatePost ? <Navigate to={'/form/' + _id} /> :
+        '<Navigate to={' / '} /> '
   )
 }
 

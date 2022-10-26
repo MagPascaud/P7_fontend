@@ -34,12 +34,10 @@ function Header() {
                 <Link to="/"><IconBlackImg src={IconBlack} alt="icone header" /></Link>
                 <HeaderStyle>
                     <Link to="/">Accueil</Link>
-                    <Link to="/post">Créer un post</Link>
-                    <Link to="/userName">Mon compte</Link>
-                    <Link to="/user">Me déconnecter</Link>
+                    <Link to="/form/create">Créer un post</Link>
+                    <Link to={"/user/" + localStorage.getItem('userId')}>Mon compte</Link>
+                    <Link to="/login" >Me déconnecter</Link>
                 </HeaderStyle>
-
-
             </nav>
         </header>
     )

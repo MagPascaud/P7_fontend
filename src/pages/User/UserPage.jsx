@@ -1,55 +1,64 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, Navigate } from "react-router-dom";
+import Footer from "../../components/Footer/Footer";
+import Header from "../../components/Header/Header";
 import Post from "../../components/Post/Post";
 
 
 
-function User(user) {
-    console.log(user);
-
+function User() {
+    const token = localStorage.getItem('token');
     const { id } = useParams();
-    const [posts, setPosts] = useState({
-        user: {}
-    });
+    const [error, setError] = useState(null);
+    const [posts, setPosts] = useState([]);
+    const [user, setUser] = useState({});
+
     useEffect(() => {
         fetch('http://localhost:3000/api/users/' + id, {
             headers: {
-                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmU3YjUwZjJhNGFiYjlhZDE2ZDQ4MDEiLCJpYXQiOjE2NjU5ODcyNTIsImV4cCI6MTY2NjA3MzY1Mn0.PiWMp0MtD_EU06_CfRiCnBvCLZ6S4pkMwJu5sl6M4YE"
+                Authorization: `Bearer ${token}`
             }
         })
             .then(res => res.json())
-            .then(post => setPosts(post))
-    });
+            .then(user => {
+                setUser(user);
+                setPosts(user.posts || []);
+            })
+            .catch(e => setError(e))
+
+    }, []);
     return (
-
-        <main>
-            <header className='user'>
-                <img src={`${user.userImageUrl}`} alt="" className="avatar" />
-                <span>{`${user.userName}`}</span>
-            </header>
-
-            <h1>Mes publications</h1>
+        token && !error ?
             <>
-                {
-                    posts.map(post =>
-                        <Link to={post._id}>
-                            <Post
-                                postTitle={post.postTitle}
-                                _id={post._id}
-                                postText={post.postText}
-                                user={post.user}
-                                likes={post.likes}
-                                userLiked={post.userLiked}
-                                key={post._id}
-                                imageUrl={post.imageUrl}
-                                createdDate={post.createdDate}
-                            ></Post>
-                        </Link>
-                    )
-                }
-            </>
-        </main>
+                <Header></Header>
+                <main>
+                    <header className='user'>
+                        <img src={`${user.userImageUrl}`} alt="" className="avatar" />
+                        <span>{`${user.userName}`}</span>
+                    </header>
 
+                    <h1>Mes publications</h1>
+                    {
+                        posts.map(post =>
+                            <Link to={post._id}>
+                                <Post
+                                    postTitle={post.postTitle}
+                                    _id={post._id}
+                                    postText={post.postText}
+                                    user={post.user}
+                                    likes={post.likes}
+                                    userLiked={post.userLiked}
+                                    key={post._id}
+                                    imageUrl={post.imageUrl}
+                                    createdDate={post.createdDate}
+                                ></Post>
+                            </Link>
+                        )
+                    }
+                </main>
+                <Footer></Footer>
+            </>
+            : <Navigate to={'/login'}></Navigate>
     )
 }
 

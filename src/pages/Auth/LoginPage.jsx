@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import AuthForm from "../../components/AuthForm/AuthForm";
 
 function Login() {
-
+    localStorage.clear();
     return (
         <>
             <h1>VOUS AVEZ DEJA UN COMPTE</h1>

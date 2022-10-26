@@ -1,5 +1,6 @@
 import icon from '../../assets/icon.png'
 import styled from 'styled-components';
+import colors from '../../utils/style/colors';
 
 
 
@@ -13,6 +14,7 @@ const FooterBanner = styled.footer`
 border-top: solid 2px black;
 margin-top: 20px;
 padding-top: 20px;
+color: ${colors.tertiary};
 `
 
 function Footer() {
