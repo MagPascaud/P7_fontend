@@ -8,7 +8,13 @@ body {
     margin: auto;
     background-color: ${colors.background};
 }
-
+body a {
+    text-decoration: none;
+    color: ${colors.tertiary};
+}
+body a:hover {
+    text-shadow: 0px 0px ${colors.tertiary};
+}
 `
 
 export default GlobalStyle

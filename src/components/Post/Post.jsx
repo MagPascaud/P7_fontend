@@ -45,7 +45,7 @@ function Post({ _id, postText, postTitle, likes, user, imageUrl, createdDate, up
             <img src={`${user.userImageUrl}`} alt="" className="avatar" />
             <span>{`${user.userName}`}, {updatedDate ? 'mis à jour le ' + updatedDate : 'créé le ' + createdDate}</span>
           </Link>
-          <div className='butttons'>
+          <div className='buttons'>
             <button onClick={onUpdate}>Editer</button>
             <button onClick={onDeletePost}>Supprimer</button>
           </div>

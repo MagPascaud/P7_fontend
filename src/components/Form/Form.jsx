@@ -68,7 +68,7 @@ function PostForm() {
                 <Header></Header>
                 <main>
                     <h1>{(post ? 'Mettre à jour la' : 'Créer une') + ' publication'}</h1>
-                    <form className='authForm' onSubmit={submitForm}>
+                    <form className='postForm' onSubmit={submitForm}>
                         <label for="title">Titre de la publication</label>
                         <input type="text" name="title" id="title" required value={postTitle} onChange={(e) => setPostTile(e.target.value)}></input>
                         <label for="desc">Description de la publication</label>

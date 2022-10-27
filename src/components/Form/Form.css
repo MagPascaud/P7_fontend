@@ -1,6 +1,6 @@
-/* Présentation de la page authentification */
+/* Présentation de la page de création d'un post */
 
-.authForm {
+.postForm {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -29,12 +29,4 @@ input {
     width: 50%;
     border-radius: 10px 10px;
     position: relative;
-}
-
-.connexion {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
 }

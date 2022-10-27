@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import AuthForm from "../../components/AuthForm/AuthForm";
+import Footer from '../../components/Footer/Footer';
+
 
 function Signup() {
 
@@ -14,6 +16,7 @@ function Signup() {
                 <p> Vous avez déjà un compte :</p>
                 <Link to="/login">Se connecter</Link>
             </div>
+            <Footer />
         </>
     )
 }

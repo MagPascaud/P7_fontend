@@ -32,12 +32,13 @@ function User() {
             <>
                 <Header></Header>
                 <main>
+                    <h1>Mon compte</h1>
                     <header className='user'>
                         <img src={`${user.userImageUrl}`} alt="" className="avatar" />
                         <span>{`${user.userName}`}</span>
                     </header>
 
-                    <h1>Mes publications</h1>
+
                     {
                         posts.map(post =>
                             <Link to={post._id}>
