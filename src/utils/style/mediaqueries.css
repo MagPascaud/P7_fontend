@@ -1,3 +1,4 @@
+/* Pour smartphones jusqu'à 480 px */
 @media screen and (max-width: 480px) {
     main {
         width: 100%;
@@ -8,6 +9,7 @@
     }
 }
 
+/* Pour tablettes de 480 à 1024 px */
 @media all and (min-width: 480px) and (max-width: 1024px) {
     body {
         width: 90%;

@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import colors from '../../utils/style/colors';
 import { Link } from 'react-router-dom';
 
-
-
 //Mise en page du header
 const IconBlackImg = styled.img`
 height:40%;
@@ -25,8 +23,7 @@ font-size: 16px;
 margin-bottom: 100px;
 `
 
-
-
+//composant du Header
 function Header() {
     return (
         <header>

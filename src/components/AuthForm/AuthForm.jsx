@@ -2,6 +2,7 @@ import './Auth.css';
 import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 
+//composant de l'authentification login et signup
 function AuthForm(props) {
     const isSignUp = props.isSignUp;
 

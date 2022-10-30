@@ -1,6 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import colors from '../style/colors'
 
+//Style golbal avec police
 const GlobalStyle = createGlobalStyle`
 body {
     font-family: Lato, Trebuchet MS, Helvetica, sans-serif;

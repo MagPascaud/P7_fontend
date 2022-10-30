@@ -4,6 +4,7 @@ import './Form.css';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 
+//composant de création ou de modification d'un post
 function PostForm() {
     const token = localStorage.getItem('token');
     const { id } = useParams();

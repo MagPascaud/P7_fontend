@@ -16,7 +16,7 @@ margin-top: 20px;
 padding-top: 20px;
 color: ${colors.tertiary};
 `
-
+//composant du Footer
 function Footer() {
     return (
         <footer>

@@ -1,3 +1,4 @@
+//Stocke les couleurs
 const colors = {
     primary: '#FD2D01',
     secondary: '#FFD7D7',
