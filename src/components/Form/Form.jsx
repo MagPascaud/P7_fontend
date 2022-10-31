@@ -43,7 +43,10 @@ function PostForm() {
                 Authorization: `Bearer ${token}`
             }
         })
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) throw new Error(res.statusText)
+                return res.json()
+            })
             .then(value => {
                 setResOK(true)
             })

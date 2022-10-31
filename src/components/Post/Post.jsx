@@ -2,12 +2,15 @@ import { useEffect, useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import './Post.css';
 
-//composant Post
-function Post({ _id, postText, postTitle, likes, user, imageUrl, createdDate, updatedDate }) {
+function Post({ _id, postText, postTitle, likes, user, imageUrl, createdAt, updatedAt }) {
   const token = localStorage.getItem('token');
+  const currentUserId = localStorage.getItem('userId');
+  const isAdmin = localStorage.getItem('isAdmin');
   const [updatePost, setUpdatePost] = useState(false);
+  const [isOwnerOrAdmin] = useState(isAdmin === 'true' || user._id === currentUserId);
   const [deletePost, setSetDeletePost] = useState(false);
   const [resOK, setResOK] = useState(false);
+
 
   const onDeletePost = () => {
     const confirmDelete = window.confirm("Êtes-vous sûr de vouloir supprimer la publication ?");
@@ -29,9 +32,12 @@ function Post({ _id, postText, postTitle, likes, user, imageUrl, createdDate, up
         Authorization: `Bearer ${token}`
       }
     })
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error(res.statusText)
+        return res.json()
+      })
       .then(value => {
-        setResOK(true)
+        setResOK(true);
       })
       .catch(e => {
         setSetDeletePost(false)
@@ -44,27 +50,30 @@ function Post({ _id, postText, postTitle, likes, user, imageUrl, createdDate, up
         <header className='user'>
           <Link className='a' to={'/user/' + user._id}>
             <img src={`${user.userImageUrl}`} alt="" className="avatar" />
-            <span>{`${user.userName}`}, {updatedDate ? 'mis à jour le ' + updatedDate : 'créé le ' + createdDate}</span>
+            <span>{`${user.userName}`} {updatedAt ? 'mis à jour le ' + new Date(updatedAt).toLocaleDateString('fr-FR') : createdAt ? 'créé le ' + new Date(createdAt).toLocaleDateString('fr-FR') : ''}</span>
           </Link>
-          <div className='buttons'>
-            <button onClick={onUpdate}>Editer</button>
-            <button onClick={onDeletePost}>Supprimer</button>
-          </div>
+          {
+            isOwnerOrAdmin ?
+              <div className='butttons'>
+                <button onClick={onUpdate}>Editer</button>
+                <button onClick={onDeletePost}>Supprimer</button>
+              </div> :
+              ''
+          }
+
         </header>
 
-        <Link className='a' to={'/post/' + _id}>
-          <h3>{postTitle}</h3>
-          <img src={`${imageUrl}`} alt={`${imageUrl}`} className="main-content" />
-          <p className="desc">{`${postText}`}</p>
-          <footer className='reacts'>
-            <button className="likes">
-              <span>{likes} 🤍</span>
-            </button>
-            <div className="comments">
-              <span className="nb-comments"> commentaires</span>
-            </div>
-          </footer>
-        </Link>
+        <h3>{postTitle}</h3>
+        <img src={`${imageUrl}`} alt={`${imageUrl}`} className="main-content" />
+        <p className="desc">{`${postText}`}</p>
+        <footer className='reacts'>
+          <button className="likes">
+            <span>{likes} 🤍</span>
+          </button>
+          <div className="comments">
+            <span className="nb-comments"> commentaires</span>
+          </div>
+        </footer>
       </article>
       :
       updatePost ? <Navigate to={'/form/' + _id} /> :

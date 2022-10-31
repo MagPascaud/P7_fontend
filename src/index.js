@@ -5,7 +5,6 @@ import HomePage from './pages/Home/HomePage';
 import reportWebVitals from './reportWebVitals';
 import GlobalStyle from './utils/style/GlobalStyle';
 import FormPage from './pages/Form/FormPage';
-import PostPage from './pages/Post/PostPage';
 import LoginPage from './pages/Auth/LoginPage';
 import SignupPage from './pages/Auth/SignupPage';
 import UserPage from './pages/User/UserPage';
@@ -22,7 +21,6 @@ root.render(
         <Route path='/' element={<HomePage />} />
         <Route path='/form/:id' element={<FormPage />} />
         <Route path='/user/:id' element={<UserPage />} />
-        <Route path='/post/:id' element={<PostPage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/signup' element={<SignupPage />} />
       </Routes>

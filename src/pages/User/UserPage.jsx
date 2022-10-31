@@ -19,7 +19,10 @@ function User() {
                 Authorization: `Bearer ${token}`
             }
         })
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) throw new Error(res.statusText)
+                return res.json()
+            })
             .then(user => {
                 setUser(user);
                 setPosts(user.posts || []);
@@ -32,28 +35,25 @@ function User() {
             <>
                 <Header></Header>
                 <main>
-                    <h1>Mon compte</h1>
                     <header className='user'>
                         <img src={`${user.userImageUrl}`} alt="" className="avatar" />
                         <span>{`${user.userName}`}</span>
                     </header>
 
-
+                    <h1>Mon compte</h1>
                     {
                         posts.map(post =>
-                            <Link to={post._id}>
-                                <Post
-                                    postTitle={post.postTitle}
-                                    _id={post._id}
-                                    postText={post.postText}
-                                    user={post.user}
-                                    likes={post.likes}
-                                    userLiked={post.userLiked}
-                                    key={post._id}
-                                    imageUrl={post.imageUrl}
-                                    createdDate={post.createdDate}
-                                ></Post>
-                            </Link>
+                            <Post
+                                postTitle={post.postTitle}
+                                key={post._id}
+                                _id={post._id}
+                                postText={post.postText}
+                                user={post.user}
+                                likes={post.likes}
+                                imageUrl={post.imageUrl}
+                                createdAt={post.createdAt}
+                                updatedAt={post.updatedAt}
+                            ></Post>
                         )
                     }
                 </main>

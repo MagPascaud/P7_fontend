@@ -14,7 +14,10 @@ function Home() {
         Authorization: `Bearer ${token}`
       }
     })
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error(res.statusText)
+        return res.json()
+      })
       .then(posts => setPosts(posts))
       .catch(e => setError(e))
   }, []);
@@ -34,8 +37,8 @@ function Home() {
                 user={post.user}
                 likes={post.likes}
                 imageUrl={post.imageUrl}
-                createdAt={post.createdAt}
-                updatedAt={post.updatedAt}
+                createdDate={post.createDate}
+                updatedDate={post.updateDate}
               ></Post>
             )
           }

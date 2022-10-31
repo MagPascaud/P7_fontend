@@ -11,6 +11,7 @@ function AuthForm(props) {
     const [userName, setUserName] = useState("");
     const [formSubmit, setFormSubmit] = useState(false);
     const [requestOK, setRequestOK] = useState(false);
+    const [requestNOK, setRequestNOK] = useState(false);
 
     useEffect(() => {
         if (!formSubmit) return
@@ -23,7 +24,10 @@ function AuthForm(props) {
                 "Content-Type": "application/json"
             }
         })
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) throw new Error(res.statusText)
+                return res.json()
+            })
             .then(value => {
                 if (!isSignUp) {
                     localStorage.setItem('token', value.token);
@@ -32,7 +36,10 @@ function AuthForm(props) {
                 };
                 setRequestOK(true)
             })
-            .catch(e => setFormSubmit(false))
+            .catch(e => {
+                setFormSubmit(false)
+                setRequestNOK(true);
+            })
     });
 
     const submitForm = (e) => {
@@ -59,6 +66,7 @@ function AuthForm(props) {
                 <label for="password">Votre mot de passe :</label>
                 <input type="password" name="password" id="password" required value={password} onChange={(e) => setPassword(e.target.value)}></input>
                 <button className='button' type="submit">{isSignUp ? "Créer son compte" : "Se connecter"}</button>
+                <div>{requestNOK ? 'Une erreur est survenue' : ''}</div>
             </form>
             : <Navigate to={isSignUp ? '/login' : '/'} />
     )
