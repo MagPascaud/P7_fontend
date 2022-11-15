@@ -3,6 +3,9 @@
 .a {
     text-decoration: none;
     color: unset;
+    display: flex;
+    flex-direction: row;
+
 }
 
 /* Présentation du post */
@@ -32,14 +35,22 @@
 
 .buttons {
     display: flex;
-    gap: 10px
 }
+
+button {
+    background-color: #E2E2E2;
+    border-color: transparent;
+    border-radius: 40%;
+    margin-right: 10px;
+}
+
 
 .avatar {
     width: 60px;
     height: 60px;
     margin-right: 10px;
 }
+
 
 /* Présentation du corps du post */
 .main-content {
@@ -57,4 +68,20 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px;
+
+}
+
+footer {
+    border-top: solid 1px #E2E2E2;
+
+}
+
+/*Présentation du titre */
+.post h3 {
+    padding: 20px;
+}
+
+.userName {
+    vertical-align: middle;
+    padding: 15px;
 }

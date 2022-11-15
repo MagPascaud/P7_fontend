@@ -14,18 +14,17 @@ import "./utils/style/mediaqueries.css";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <Router>
-      <GlobalStyle />
-      <Routes>
-        <Route path='/' element={<HomePage />} />
-        <Route path='/form/:id' element={<FormPage />} />
-        <Route path='/user/:id' element={<UserPage />} />
-        <Route path='/login' element={<LoginPage />} />
-        <Route path='/signup' element={<SignupPage />} />
-      </Routes>
-    </Router>
-  </React.StrictMode>
+
+  <Router>
+    <GlobalStyle />
+    <Routes>
+      <Route path='/' element={<HomePage />} />
+      <Route path='/form/:id' element={<FormPage />} />
+      <Route path='/user/:id' element={<UserPage />} />
+      <Route path='/login' element={<LoginPage />} />
+      <Route path='/signup' element={<SignupPage />} />
+    </Routes>
+  </Router>
 )
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

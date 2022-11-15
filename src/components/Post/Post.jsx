@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import './Post.css';
 
@@ -12,37 +12,34 @@ function Post({ _id, postText, postTitle, likes, user, imageUrl, createdAt, upda
   const [resOK, setResOK] = useState(false);
 
 
-  const onDeletePost = () => {
-    const confirmDelete = window.confirm("Êtes-vous sûr de vouloir supprimer la publication ?");
-    if (confirmDelete) {
-      setSetDeletePost(true);
-    }
-  }
+
   const onUpdate = () => {
     setUpdatePost(true);
   }
-
-
-  useEffect(() => {
-    if (!deletePost) return
-
-    fetch('http://localhost:3000/api/posts/' + _id, {
-      method: 'DELETE',
+  const onLike = useCallback(() => {
+    console.log("like");
+    fetch('http://localhost:3000/api/posts/' + _id + '/like', {
+      method: 'POST',
       headers: {
-        Authorization: `Bearer ${token}`
-      }
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        userId: currentUserId
+      })
     })
       .then(res => {
         if (!res.ok) throw new Error(res.statusText)
         return res.json()
       })
       .then(value => {
-        setResOK(true);
+        window.location.reload(false)
       })
       .catch(e => {
-        setSetDeletePost(false)
       })
-  })
+  }, [])
+
+
 
   return (
     !updatePost && !resOK ?
@@ -50,13 +47,17 @@ function Post({ _id, postText, postTitle, likes, user, imageUrl, createdAt, upda
         <header className='user'>
           <Link className='a' to={'/user/' + user._id}>
             <img src={`${user.userImageUrl}`} alt="" className="avatar" />
-            <span>{`${user.userName}`} {updatedAt ? 'mis à jour le ' + new Date(updatedAt).toLocaleDateString('fr-FR') : createdAt ? 'créé le ' + new Date(createdAt).toLocaleDateString('fr-FR') : ''}</span>
+            <span className='userName'>{`${user.userName}`} {updatedAt ? 'mis à jour le ' + new Date(updatedAt).toLocaleDateString('fr-FR') : createdAt ? 'créé le ' + new Date(createdAt).toLocaleDateString('fr-FR') : ''}</span>
           </Link>
           {
             isOwnerOrAdmin ?
-              <div className='butttons'>
-                <button onClick={onUpdate}>Editer</button>
-                <button onClick={onDeletePost}>Supprimer</button>
+              <div className='buttons'>
+                <button onClick={onUpdate}><span class="material-symbols-outlined" title='Modifier'>
+                  drive_file_rename_outline
+                </span></button>
+                <button onClick><span class="material-symbols-outlined" title='Supprimer'>
+                  delete
+                </span></button>
               </div> :
               ''
           }
@@ -67,11 +68,13 @@ function Post({ _id, postText, postTitle, likes, user, imageUrl, createdAt, upda
         <img src={`${imageUrl}`} alt={`${imageUrl}`} className="main-content" />
         <p className="desc">{`${postText}`}</p>
         <footer className='reacts'>
-          <button className="likes">
-            <span>{likes} 🤍</span>
+          <button onClick={onLike} >
+            <span className="likes">{likes} <span class="material-symbols-outlined" title="J'aime">
+              favorite
+            </span></span>
           </button>
           <div className="comments">
-            <span className="nb-comments"> commentaires</span>
+            <span className="nb-comments"></span>
           </div>
         </footer>
       </article>
