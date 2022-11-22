@@ -80,7 +80,7 @@ function PostForm() {
                         <label for="img">Image de la publication</label>
                         <input type="file" accept='.jpeg, .jpg, .gif, .png, .webp' name="img" id="img" required onChange={(e) => setPostImg(e.target.files[0])}></input>
 
-                        <button type='submit' className='button'>{post ? 'Mettre à jour' : 'Créer'}</button>
+                        <button type='submit' className='form'>{post ? 'Mettre à jour' : 'Créer'}</button>
                     </form>
 
                 </main>

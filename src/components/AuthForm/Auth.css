@@ -23,12 +23,16 @@ input {
     border: none;
 }
 
-.button {
+.form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     text-align: center;
     padding: 15px;
-    width: 50%;
     border-radius: 10px 10px;
-    position: relative;
+    background-color: white;
+    cursor: pointer;
+
 }
 
 .connexion {

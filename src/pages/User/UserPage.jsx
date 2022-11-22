@@ -40,7 +40,7 @@ function User() {
                         <span>{`${user.userName}`}</span>
                     </header>
 
-                    <h1>Mon compte</h1>
+                    <h1>Publications</h1>
                     {
                         posts.map(post =>
                             <Post

@@ -42,6 +42,7 @@ button {
     border-color: transparent;
     border-radius: 40%;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 
@@ -84,4 +85,11 @@ footer {
 .userName {
     vertical-align: middle;
     padding: 15px;
+}
+
+.likes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
 }
