@@ -20,7 +20,7 @@ function Home() {
       })
       .then(posts => setPosts(posts))
       .catch(e => setError(e))
-  }, []);
+  }, [token]);
 
   return (
     token && !error ?
@@ -37,8 +37,8 @@ function Home() {
                 user={post.user}
                 likes={post.likes}
                 imageUrl={post.imageUrl}
-                createdDate={post.createDate}
-                updatedDate={post.updateDate}
+                createdAt={post.createdAt}
+                updatedAt={post.updatedAt}
               ></Post>
             )
           }

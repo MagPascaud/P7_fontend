@@ -31,16 +31,16 @@ function Header() {
                 <div>
                     <img className='iconBlackImg' src={icon} alt="logo Groupomania" /></div>
                 <div className='headerStyle'>
-                    <Link to="/" className='icone'><span class="material-symbols-outlined" title='Accueil'>
+                    <Link to="/" className='icone'><span className="material-symbols-outlined" title='Accueil'>
                         home
                     </span></Link>
-                    <Link to="/form/create" className='icone'><span class="material-symbols-outlined" title='Créer un post'>
+                    <Link to="/form/create" className='icone'><span className="material-symbols-outlined" title='Créer un post'>
                         library_add
                     </span></Link>
-                    <Link to={"/user/" + localStorage.getItem('userId')} className='icone'><span class="material-symbols-outlined" title='Mon compte'>
+                    <Link to={"/user/" + localStorage.getItem('userId')} className='icone'><span className="material-symbols-outlined" title='Mon compte'>
                         person_filled
                     </span></Link>
-                    <Link to="/login" className='icone'><span class="material-symbols-outlined" title='Se déconnecter'>
+                    <Link to="/login" className='icone'><span className="material-symbols-outlined" title='Se déconnecter'>
                         logout
                     </span></Link>
                 </div>

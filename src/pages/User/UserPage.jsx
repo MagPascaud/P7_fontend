@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
-import { Link, useParams, Navigate } from "react-router-dom";
+import { useCallback, useEffect, useState } from "react";
+import { useParams, Navigate } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import Post from "../../components/Post/Post";
-
-
 
 function User() {
     const token = localStorage.getItem('token');
@@ -29,18 +27,50 @@ function User() {
             })
             .catch(e => setError(e))
 
-    }, []);
+    }, [id, token]);
+
+    const onDelete = useCallback(() => {
+        const conf = window.confirm('Êtes-vous certain de vouloir supprimer ce compte ?');
+        if (conf) {
+            console.log('ok')
+
+            fetch('http://localhost:3000/api/users/' + id, {
+                method: 'DELETE',
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            })
+                .then(res => {
+                    if (!res.ok) throw new Error(res.statusText)
+                    return res.json()
+                })
+                .then(value => {
+                    window.location.reload(false)
+                })
+        }
+
+    }, [id, token])
+
     return (
         token && !error ?
             <>
-                <Header></Header>
+                <Header />
                 <main>
                     <header className='user'>
                         <img src={`${user.userImageUrl}`} alt="" className="avatar" />
                         <span>{`${user.userName}`}</span>
-                    </header>
 
-                    <h1>Publications</h1>
+                    </header>
+                    <div>
+                        <button onClick={onDelete}>
+                            <span className="material-symbols-outlined" title='Supprimer le compte'>
+                                delete
+                            </span>
+                        </button>
+                    </div>
+
+                    <h2>Publications</h2>
+
                     {
                         posts.map(post =>
                             <Post
@@ -57,7 +87,7 @@ function User() {
                         )
                     }
                 </main>
-                <Footer></Footer>
+                <Footer />
             </>
             : <Navigate to={'/login'}></Navigate>
     )

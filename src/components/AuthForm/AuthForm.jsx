@@ -54,16 +54,16 @@ function AuthForm(props) {
                     {
                         isSignUp ?
                             <>
-                                <label for="userName">Votre nom d'utilisateur :</label>
+                                <label htmlFor="userName">Votre nom d'utilisateur :</label>
                                 <input type="text" name="userName" id="userName" required value={userName} onChange={(e) => setUserName(e.target.value)}></input>
                             </> :
                             <></>
                     }
 
                 </div>
-                <label for="email">Votre adresse mail :</label>
+                <label htmlFor="email">Votre adresse mail :</label>
                 <input type="email" name="email" id="email" required value={email} onChange={(e) => setEmail(e.target.value)}></input>
-                <label for="password">Votre mot de passe :</label>
+                <label htmlFor="password">Votre mot de passe :</label>
                 <input type="password" name="password" id="password" required value={password} onChange={(e) => setPassword(e.target.value)}></input>
                 <button className='form' type="submit">{isSignUp ? "Créer son compte" : "Se connecter"}</button>
                 <div>{requestNOK ? 'Une erreur est survenue' : ''}</div>
