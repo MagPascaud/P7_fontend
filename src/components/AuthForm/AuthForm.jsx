@@ -65,7 +65,7 @@ function AuthForm(props) {
                 <input type="email" name="email" id="email" required value={email} onChange={(e) => setEmail(e.target.value)}></input>
                 <label htmlFor="password">Votre mot de passe :</label>
                 <input type="password" name="password" id="password" required value={password} onChange={(e) => setPassword(e.target.value)}></input>
-                <button className='form' type="submit">{isSignUp ? "Créer son compte" : "Se connecter"}</button>
+                <button className='form' type="submit">{isSignUp ? "CRÉER SON COMPTE" : "SE CONNECTER"}</button>
                 <div>{requestNOK ? 'Une erreur est survenue' : ''}</div>
             </form>
             : <Navigate to={isSignUp ? '/login' : '/'} />

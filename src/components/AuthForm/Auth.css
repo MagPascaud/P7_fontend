@@ -32,7 +32,8 @@ input {
     border-radius: 10px 10px;
     background-color: white;
     cursor: pointer;
-
+    align-self: center;
+    font-family: Lato;
 }
 
 .connexion {

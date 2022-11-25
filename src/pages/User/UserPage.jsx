@@ -3,6 +3,7 @@ import { useParams, Navigate } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import Post from "../../components/Post/Post";
+import "../User/UserPage.css";
 
 function User() {
     const token = localStorage.getItem('token');
@@ -10,6 +11,8 @@ function User() {
     const [error, setError] = useState(null);
     const [posts, setPosts] = useState([]);
     const [user, setUser] = useState({});
+    // const [userName, setUserName] = useState("");
+
 
     useEffect(() => {
         fetch('http://localhost:3000/api/users/' + id, {
@@ -51,24 +54,37 @@ function User() {
 
     }, [id, token])
 
+    // const onUpdate
+
     return (
         token && !error ?
             <>
                 <Header />
                 <main>
-                    <header className='user'>
-                        <img src={`${user.userImageUrl}`} alt="" className="avatar" />
-                        <span>{`${user.userName}`}</span>
+                    <header className='userPage'>
+                        <div className="userLine">
+                            <img src={`${user.userImageUrl}`} alt="" className="" />
+                            <span><p>{`${user.userName}`}</p></span>
+                        </div>
+                        <div className="userLine">
+                            <p>Modifier mon nom d'utilisateur</p>
+                            <input type="text" name="userName" id="userName" ></input>
+                            <button type='submit' className='form'>Mettre à jour</button>
 
+                        </div>
+                        <div className="userLine">
+                            <p>Modifier ma photo de profil</p>
+                            <input type="file" accept='.jpeg, .jpg, .gif, .png, .webp' name="img" id="img" ></input>
+                            <button type='submit' className='form'>Mettre à jour</button>
+
+                        </div>
+                        <div className="delete">
+                            <button className="" onClick={onDelete}>
+                                <p>SUPPRIMER LE COMPTE</p>
+                            </button>
+
+                        </div>
                     </header>
-                    <div>
-                        <button onClick={onDelete}>
-                            <span className="material-symbols-outlined" title='Supprimer le compte'>
-                                delete
-                            </span>
-                        </button>
-                    </div>
-
                     <h2>Publications</h2>
 
                     {
