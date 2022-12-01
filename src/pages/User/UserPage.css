@@ -6,12 +6,18 @@
     border-bottom: 2px solid white;
 }
 
+.userForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
 .userLine {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding-bottom: 20px;
     border-radius: 10px 10px;
     box-shadow: 0 1px 5px 0 #4E5166;
     margin-bottom: 20px;

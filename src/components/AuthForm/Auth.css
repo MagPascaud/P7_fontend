@@ -33,7 +33,7 @@ input {
     background-color: white;
     cursor: pointer;
     align-self: center;
-    font-family: Lato;
+    font-family: Lato, Trebuchet MS, Helvetica, sans-serif;
 }
 
 .connexion {

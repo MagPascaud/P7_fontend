@@ -62,8 +62,16 @@ function Post({ _id, postText, postTitle, likes, user, imageUrl, createdAt, upda
     <article className='post'>
       <header className='user'>
         <Link className='a' to={'/user/' + user._id}>
-          <img src={`${user.userImageUrl}`} alt="" className="avatar" />
-          <span className='userName'>{`${user.userName}`} {updatedAt ? 'mis à jour le ' + new Date(updatedAt).toLocaleDateString('fr-FR') : createdAt ? 'créé le ' + new Date(createdAt).toLocaleDateString('fr-FR') : ''}</span>
+          {
+            user.userImageUrl ?
+              <img src={`${user.userImageUrl}`} alt="" className="avatar" />
+              : <></>
+          }
+          {
+            user.userName ?
+              <span className='userName'>{`${user.userName}`} {updatedAt ? 'mis à jour le ' + new Date(updatedAt).toLocaleDateString('fr-FR') : createdAt ? 'créé le ' + new Date(createdAt).toLocaleDateString('fr-FR') : ''}</span>
+              : <></>
+          }
         </Link>
         {
           isOwnerOrAdmin ?
@@ -82,7 +90,11 @@ function Post({ _id, postText, postTitle, likes, user, imageUrl, createdAt, upda
       </header>
 
       <h3>{postTitle}</h3>
-      <img src={`${imageUrl}`} alt={`${imageUrl}`} className="main-content" />
+      {
+        imageUrl ?
+          <img src={`${imageUrl}`} alt={`${imageUrl}`} className="main-content" />
+          : <></>
+      }
       <p className="desc">{`${postText}`}</p>
       <footer className='reacts'>
         <button onClick={onLike} >

@@ -34,7 +34,9 @@ function PostForm() {
         const fd = new FormData();
         fd.append('postTitle', postTitle);
         fd.append('postText', postDesc);
-        fd.append('image', postImg);
+        if (postImg) {
+            fd.append('image', postImg);
+        }
         fd.append('user', post ? post.user._id : localStorage.getItem('userId'));
 
         fetch('http://localhost:3000/api/posts/' + (post ? post._id : ''), {
@@ -51,12 +53,8 @@ function PostForm() {
             .then(value => {
                 window.location.href = '/'
             })
-    }, [postTitle, postDesc, postImg, post])
+    }, [token, postTitle, postDesc, postImg, post])
 
-    const handleChangeTitle = (e) => {
-        setPostTitle(e.target.value);
-        console.log(postTitle);
-    }
 
     return (
         token ?
@@ -66,11 +64,11 @@ function PostForm() {
                     <h1>{(post ? 'Mettre à jour la' : 'Créer une') + ' publication'}</h1>
                     <form className='postForm' onSubmit={(e) => { e.preventDefault(); submitForm() }}>
                         <label htmlFor="title">Titre de la publication</label>
-                        <input type="text" name="title" id="title" required value={postTitle} onChange={handleChangeTitle}></input>
+                        <input type="text" name="title" id="title" required value={postTitle} onChange={(e) => setPostTitle(e.target.value)}></input>
                         <label htmlFor="desc">Description de la publication</label>
                         <input type="text" name="desc" id="desc" required value={postDesc} onChange={(e) => setPostDesc(e.target.value)}></input>
                         <label htmlFor="img">Image de la publication</label>
-                        <input type="file" accept='.jpeg, .jpg, .gif, .png, .webp' name="img" id="img" required onChange={(e) => setPostImg(e.target.files[0])}></input>
+                        <input type="file" accept='.jpeg, .jpg, .gif, .png, .webp' name="img" id="img" onChange={(e) => setPostImg(e.target.files[0])}></input>
 
                         <button type='submit' className='form'>{post ? 'Mettre à jour' : 'Créer'}</button>
                     </form>

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { useParams, Navigate } from "react-router-dom";
+import { useParams, useNavigate, Navigate } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import Post from "../../components/Post/Post";
@@ -11,7 +11,15 @@ function User() {
     const [error, setError] = useState(null);
     const [posts, setPosts] = useState([]);
     const [user, setUser] = useState({});
-    // const [userName, setUserName] = useState("");
+    const [userImage, setUserImage] = useState({});
+    const [userName, setUserName] = useState('');
+
+    const currentUserId = localStorage.getItem('userId');
+    const isAdmin = localStorage.getItem('isAdmin');
+    let navigate = useNavigate();
+    console.log(isAdmin === 'true', user._id === currentUserId)
+
+
 
 
     useEffect(() => {
@@ -48,14 +56,39 @@ function User() {
                     return res.json()
                 })
                 .then(value => {
-                    window.location.reload(false)
+                    if (isAdmin) {
+                        navigate('/')
+                    }
+                    else {
+                        window.location.reload(false)
+                    }
                 })
         }
 
-    }, [id, token])
+    }, [navigate, isAdmin, id, token])
 
-    // const onUpdate
+    const submitForm = useCallback(() => {
+        const fd = new FormData();
+        fd.append('userName', '');
+        if (userImage) {
+            fd.append('userImageUrl', '');
+        }
 
+        fetch('http://localhost:3000/api/users/' + user._id, {
+            method: 'PUT',
+            body: fd,
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+            .then(res => {
+                if (!res.ok) throw new Error(res.statusText)
+                return res.json()
+            })
+            .then(value => {
+                window.location.reload(false)
+            })
+    }, [token, userImage, user._id])
     return (
         token && !error ?
             <>
@@ -66,24 +99,25 @@ function User() {
                             <img src={`${user.userImageUrl}`} alt="" className="" />
                             <span><p>{`${user.userName}`}</p></span>
                         </div>
-                        <div className="userLine">
-                            <p>Modifier mon nom d'utilisateur</p>
-                            <input type="text" name="userName" id="userName" ></input>
-                            <button type='submit' className='form'>Mettre à jour</button>
+                        {
+                            user._id === currentUserId || isAdmin ?
+                                <form className="userForm" onSubmit={(e) => { e.preventDefault(); submitForm() }}>
+                                    <div className="userLine">
+                                        <label htmlFor="userName">Modifier mon nom d'utilisateur :</label>
+                                        <input type="text" name="userName" id="userName" value={userName} onChange={(e) => setUserName(e.target.value)} ></input>
 
-                        </div>
-                        <div className="userLine">
-                            <p>Modifier ma photo de profil</p>
-                            <input type="file" accept='.jpeg, .jpg, .gif, .png, .webp' name="img" id="img" ></input>
-                            <button type='submit' className='form'>Mettre à jour</button>
-
-                        </div>
+                                        <label htmlFor="img">Modifier ma photo de profil :</label>
+                                        <input type="file" accept='.jpeg, .jpg, .gif, .png, .webp' name="img" id="img" onChange={(e) => setUserImage(e.target.files[0])}></input>
+                                        <button type='submit' className='form'>Mettre à jour</button>
+                                    </div>
+                                </form> : <></>
+                        }
                         <div className="delete">
-                            <button className="" onClick={onDelete}>
+                            <button type="button" onClick={onDelete}>
                                 <p>SUPPRIMER LE COMPTE</p>
                             </button>
-
                         </div>
+
                     </header>
                     <h2>Publications</h2>
 
