@@ -20,8 +20,6 @@ function User() {
     console.log(isAdmin === 'true', user._id === currentUserId)
 
 
-
-
     useEffect(() => {
         fetch('http://localhost:3000/api/users/' + id, {
             headers: {
@@ -69,9 +67,9 @@ function User() {
 
     const submitForm = useCallback(() => {
         const fd = new FormData();
-        fd.append('userName', '');
+        fd.append('userName', userName);
         if (userImage) {
-            fd.append('userImageUrl', '');
+            fd.append('userImageUrl', userImage);
         }
 
         fetch('http://localhost:3000/api/users/' + user._id, {
@@ -88,7 +86,7 @@ function User() {
             .then(value => {
                 window.location.reload(false)
             })
-    }, [token, userImage, user._id])
+    }, [token, userName, userImage, user._id])
     return (
         token && !error ?
             <>
