@@ -11,7 +11,7 @@ function User() {
     const [error, setError] = useState(null);
     const [posts, setPosts] = useState([]);
     const [user, setUser] = useState({});
-    const [userImage, setUserImage] = useState({});
+    const [userImage, setUserImage] = useState(null);
     const [userName, setUserName] = useState('');
 
     const currentUserId = localStorage.getItem('userId');
@@ -58,7 +58,8 @@ function User() {
                         navigate('/')
                     }
                     else {
-                        window.location.reload(false)
+                        navigate('/login')
+
                     }
                 })
         }
@@ -69,7 +70,7 @@ function User() {
         const fd = new FormData();
         fd.append('userName', userName);
         if (userImage) {
-            fd.append('userImageUrl', userImage);
+            fd.append('image', userImage);
         }
 
         fetch('http://localhost:3000/api/users/' + user._id, {
@@ -84,7 +85,7 @@ function User() {
                 return res.json()
             })
             .then(value => {
-                window.location.reload(false)
+                // window.location.reload(false)
             })
     }, [token, userName, userImage, user._id])
     return (
